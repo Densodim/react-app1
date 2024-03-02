@@ -1,17 +1,18 @@
 import style from "./style.module.css";
+import Container from "../Container";
+import Heading from "../Heading";
 
 const Slider = () => {
   return (
     <>
       <section className={style.section}>
         <div className={style.slider}>
-          <div className={style.container + '' + style.sliderContent}>
-            <h1 className={style.header}>Wow</h1>
-            <h2 className={style.subheader}>Wow.Wow.Wow</h2>
+          <Container className={style.sliderContent}>
+            <Heading />
             <div className={style.call}>
               <button className={style.button}>Wow</button>
             </div>
-          </div>
+          </Container>
         </div>
       </section>
     </>
