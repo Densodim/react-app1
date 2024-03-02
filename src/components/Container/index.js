@@ -1,9 +1,5 @@
+import Container from "./Conteiner";
 
 
+export default Container;
 
-const Container = () => {
-    return (
-        <>
-        </>
-    );
-}
