@@ -1,6 +1,6 @@
 import React from "react";
 import Container from "../Container";
-import style from "./Style.module.css";
+import style from "./Style.module.scss";
 import cn from "classnames";
 import PropType from "prop-types";
 
@@ -12,6 +12,7 @@ const Text = ({
   strong,
   italic,
   disabled,
+  backline,
 }) => {
   const el = `h${level}`;
   return React.createElement(
@@ -21,6 +22,7 @@ const Text = ({
         [style.strong]: strong,
         [style.italic]: italic,
         [style.disabled]: disabled,
+        [style.backline]: backline,
       }),
     },
     children
@@ -34,11 +36,12 @@ Text.defoultProps = {
 
 Text.propTypes = {
   children: PropType.node,
-  level: PropType.oneOf([1, 2, 3, 4]).isRequired,
+  level: PropType.oneOf([1, 2, 3, 4, 5]).isRequired,
   className: PropType.string,
   strong: PropType.bool,
   italic: PropType.bool,
   disabled: PropType.bool,
+  backline: PropType.bool,
 };
 
 export default Text;
