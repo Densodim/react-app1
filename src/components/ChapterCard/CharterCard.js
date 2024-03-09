@@ -10,6 +10,7 @@ import { ReactComponent as Like } from "../../components/ChapterCard/assets/hear
 
 const CharterCard = ({ id, name, src, humanName, description, onClickLike, isLike }) => {
   
+  // console.log('isLike', isLike);
   const[like, setLike] = useState(false);
   const handleClick = () => {
     onClickLike(id);
