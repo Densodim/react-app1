@@ -1,4 +1,4 @@
-import style from './Style.module.css';
+import style from './Style.module.scss';
 
 
 const Heading = () => {

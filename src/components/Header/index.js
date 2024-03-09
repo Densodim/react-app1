@@ -1,4 +1,4 @@
-import style from "./style.module.css";
+import style from "./style.module.scss";
 import PropTypes from 'prop-types';
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import Container from "../Container";

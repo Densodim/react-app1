@@ -1,4 +1,4 @@
-import style from "./Style.module.css";
+import style from "./Style.module.scss";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
