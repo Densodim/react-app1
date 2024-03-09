@@ -8,12 +8,11 @@ import PropsType from "prop-types";
 
 import { ReactComponent as Like } from "../../components/ChapterCard/assets/heart.svg";
 
-const CharterCard = ({ id, name, src, humanName, description }) => {
+const CharterCard = ({ id, name, src, humanName, description, onClickLike, isLike }) => {
   
   const[like, setLike] = useState(false);
   const handleClick = () => {
-    setLike(true);
-    console.log("Click", id);
+    onClickLike(id);
   };
   return (
     <>
@@ -34,7 +33,7 @@ const CharterCard = ({ id, name, src, humanName, description }) => {
           <div
             onClick={handleClick}
             className={cn(style.like, {
-              [style.active]: like,
+              [style.active]: isLike,
             })}
           >
             <Like />
@@ -47,6 +46,9 @@ const CharterCard = ({ id, name, src, humanName, description }) => {
     </>
   );
 };
+CharterCard.defaultProps = {
+  isLike: false,
+};
 
 CharterCard.propsType = {
   id: PropsType.number,
@@ -54,6 +56,8 @@ CharterCard.propsType = {
   src: PropsType.string,
   humanName: PropsType.string,
   description: PropsType.string,
+  isLike: PropsType.bool,
+  onClickLike: PropsType.func,
 };
 
 export default CharterCard;

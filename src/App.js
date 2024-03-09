@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 
 import style from "./App.module.scss";
 import Header from "./components/Header";
@@ -69,11 +69,14 @@ const CHARACTER = [
     "isLike": false,
   }
 ];
-
-class App extends Component {
-  render() {
-    return (
-      <>
+const App = () => {
+  const [chapter, setChapter] = useState(CHARACTER);
+    // console.log('chapter', chapter);
+    const handleLikeCklick = (id)=>{
+      console.log('like function', id);
+    }
+  return (
+    <>
         <Header />
         <Slider />
         <div className={style.cardTitle}>
@@ -92,7 +95,7 @@ class App extends Component {
           </Text>
         </div>
         <div className={style.cardWrap}>
-          {CHARACTER.map((item) => (
+          {chapter.map((item) => (
             <div key={item.id}>
             <CharterCard
             id={item.id}
@@ -100,14 +103,63 @@ class App extends Component {
             src={item.thumbnail.path}
             humanName={item.humanName}
             description={item.description}
+            onClickLike={handleLikeCklick}
+            
             />
           </div>
           ))}
         </div>
         <Footer />
       </>
-    );
-  }
-}
+  );
+};
+
+
+// class App extends Component {
+//   render() {
+//     // const [chapter, setChapter] = useState(false);
+//     // console.log('chapter', chapter);
+//     const handleLikeCklick = (id)=>{
+//       console.log('like function', id);
+//     }
+//     return (
+//       <>
+//         <Header />
+//         <Slider />
+//         <div className={style.cardTitle}>
+//           <Text level={1} backline>
+//             <span>Заголовок, но только сверху</span>
+//           </Text>
+//           <Text
+//             level={1}
+//             // element={div}
+//             className={style.App}
+//             strong={true}
+//             italic={true}
+//             disabled={true}
+//           >
+//             <span>Заголовок, но только снизу</span>
+//           </Text>
+//         </div>
+//         <div className={style.cardWrap}>
+//           {CHARACTER.map((item) => (
+//             <div key={item.id}>
+//             <CharterCard
+//             id={item.id}
+//             name={item.name}
+//             src={item.thumbnail.path}
+//             humanName={item.humanName}
+//             description={item.description}
+//             onClickLike={handleLikeCklick}
+            
+//             />
+//           </div>
+//           ))}
+//         </div>
+//         <Footer />
+//       </>
+//     );
+//   }
+// }
 
 export default App;
