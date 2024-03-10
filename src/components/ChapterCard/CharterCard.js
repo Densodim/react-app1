@@ -5,16 +5,29 @@ import cn from "classnames";
 import Text from "../Text";
 import PropsType from "prop-types";
 
-
 import { ReactComponent as Like } from "../../components/ChapterCard/assets/heart.svg";
+import Biography from "../pages/Biography/Biography";
+import Button from "../../components/Button/Button";
 
-const CharterCard = ({ id, name, src, humanName, description, onClickLike, isLike }) => {
-  
+const CharterCard = ({
+  id,
+  name,
+  src,
+  humanName,
+  description,
+  onClickLike,
+  isLike,
+  onReadBio,
+}) => {
   // console.log('isLike', isLike);
-  const[like, setLike] = useState(false);
+  const [like, setLike] = useState(false);
   const handleClick = () => {
-    onClickLike(id);
+    onClickLike && onClickLike(id);
   };
+  const handleReadBio = () => {
+    onReadBio && onReadBio(id);
+  };
+
   return (
     <>
       <div className={style.root}>
@@ -40,7 +53,9 @@ const CharterCard = ({ id, name, src, humanName, description, onClickLike, isLik
             <Like />
           </div>
           <div className={style.readBio}>
-            <a href="#">Читать биографию</a>
+            <a href="#" onClick={handleReadBio}>
+              Read Bio
+            </a>
           </div>
         </div>
       </div>
@@ -59,6 +74,7 @@ CharterCard.propsType = {
   description: PropsType.string,
   isLike: PropsType.bool,
   onClickLike: PropsType.func,
+  onReadBio: PropsType.func,
 };
 
 export default CharterCard;

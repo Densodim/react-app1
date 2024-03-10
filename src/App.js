@@ -6,6 +6,7 @@ import Slider from "./components/Slider";
 import Footer from "./components/Footer";
 import Text from "./components/Text";
 import CharterCard from "./components/ChapterCard/CharterCard";
+import Biography from "./components/pages/Biography/Biography";
 
 const CHARACTER = [
   {
@@ -77,6 +78,7 @@ const CHARACTER = [
 ];
 function App() {
   const [chapter, setChapter] = useState(CHARACTER);
+  const [chapterID, setChapterID] = useState(null);
   // console.log('chapter', chapter);
   const handleLikeCklick = (id) => {
     // console.log('like function', id);
@@ -96,40 +98,53 @@ function App() {
     });
   };
 
+  const handleReadBioClick = (id) => {
+    setChapterID(id);
+  };
+
   return (
     <>
       <Header />
       <Slider />
-      <div className={style.cardTitle}>
-        <Text level={1} backline>
-          <span>Заголовок, но только сверху</span>
-        </Text>
-        <Text
-          level={1}
-          // element={div}
-          className={style.App}
-          strong={true}
-          italic={true}
-          disabled={true}
-        >
-          <span>Заголовок, но только снизу</span>
-        </Text>
-      </div>
-      <div className={style.cardWrap}>
-        {chapter.map((item) => (
-          <div key={item.id}>
-            <CharterCard
-              id={item.id}
-              name={item.name}
-              src={item.thumbnail.path}
-              humanName={item.humanName}
-              description={item.description}
-              onClickLike={handleLikeCklick}
-              isLike={item.isLike}
-            />
+
+      {chapterID !== null ? (
+        <Biography id={chapterID} />
+      ) : (
+        <section>
+          <div className={style.cardTitle}>
+            <Text level={1} backline>
+              <span>Заголовок, но только сверху</span>
+            </Text>
+            <Text
+              level={1}
+              // element={div}
+              className={style.App}
+              strong={true}
+              italic={true}
+              disabled={true}
+            >
+              <span>Заголовок, но только снизу</span>
+            </Text>
           </div>
-        ))}
-      </div>
+          <div className={style.cardWrap}>
+            {chapter.map((item) => (
+              <div key={item.id}>
+                <CharterCard
+                  id={item.id}
+                  name={item.name}
+                  src={item.thumbnail.path}
+                  humanName={item.humanName}
+                  description={item.description}
+                  onClickLike={handleLikeCklick}
+                  onReadBio={handleReadBioClick}
+                  isLike={item.isLike}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       <Footer />
     </>
   );
