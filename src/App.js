@@ -108,7 +108,7 @@ function App() {
       <Slider />
 
       {chapterID !== null ? (
-        <Biography id={chapterID} />
+        <Biography id={chapterID} onBackClick={() => setChapterID(null)}/>
       ) : (
         <section>
           <div className={style.cardTitle}>

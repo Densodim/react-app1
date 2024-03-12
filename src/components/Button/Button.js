@@ -1,28 +1,39 @@
-import style from './Button.module.scss';
-import Text from '../Text';
-import cn from 'classnames';
+import style from "./Button.module.scss";
+import Text from "../Text";
+import cn from "classnames";
 
-import PropsType from 'prop-types';
+import PropsType from "prop-types";
+import { Children } from "react";
 
+const Button = ({ active, title, children, onClick, color }) => {
+    const handleClick = () => {
+        onClick && onClick();
+    };
+  // console.log(active);
+  return (
+    <>
+      <button
+        className={cn(style.root, {
+          [style.active]: active,
+        }, style[color])}
+        onClick={handleClick}
+      >
+        {children}
+      </button>
+    </>
+  );
+};
 
-const Button = ({active, title}) => {
-    // console.log(active);
-    return (
-        <>
-            <div className={cn(style.button, {
-                [style.active]: active
-            })}>
-                <Text level={4}>
-                    {title}
-                </Text>
-            </div>
-        </>
-    )
+Button.defaultProps = {
+    color: "primary",
 }
 
 Button.propTypes = {
-    active: PropsType.bool,
-    title: PropsType.string
-}
+    color: PropsType.oneOf(["primary", "secondary"]),
+  onClick: PropsType.func,
+  active: PropsType.bool,
+  title: PropsType.string,
+  children: PropsType.node,
+};
 
 export default Button;

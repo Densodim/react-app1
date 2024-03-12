@@ -55,12 +55,7 @@ const Slider = () => {
               {/* {component} */}
             </Text>
             <div className={style.call}>
-              <button className={style.button} onClick={handleClick}>
-                <Button 
-                active={state}
-                title={state ? "Bye" : "Hello"}
-                />
-              </button>
+                <Button active={state}>Wow</Button>          
             </div>
           </Container>
         </div>

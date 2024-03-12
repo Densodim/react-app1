@@ -1,22 +1,39 @@
-.button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 6px;
-    background-color: transparent;
-    color: #ffffff;
-    border: 1px solid white;
-    padding: 8px 13px;
-    font-size: 20px;
-    transition: background 0.15s linear;
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid white;
+  padding: 8px 13px;
+  font-size: 20px;
+  transition: background 0.15s linear;
 
-    &.active {
-        background: rgba(243, 221, 19, 0.1);
-        cursor: pointer;
-    }
-}
-
-.button:hover {
+  &.active {
+    background: rgba(243, 221, 19, 0.1);
+    cursor: pointer;
+  }
+  &.hover {
     background: rgba(255, 255, 255, 0.1);
     cursor: pointer;
+  }
+}
+
+.primary {
+  border: 1px solid yellowgreen;
+  color: #f3dd13;
+
+  &.hover {
+    background: rgba(233, 49, 3, 0.1);
+    cursor: pointer;
+  }
+}
+.secondary {
+  border: 1px solid black;
+  color: #000;
+  &.hover {
+    background: rgba(8, 8, 8, 0.1);
+    cursor: pointer;
+  }
 }

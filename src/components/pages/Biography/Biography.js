@@ -3,14 +3,20 @@ import PropsType from "prop-types";
 import { BIO } from "../Bio";
 import Container from "../../Container";
 import Text from "../../Text";
+import Button from "../../Button/Button";
 
-const Biography = ({ id }) => {
-  const onBackClick = () => {};
-  console.log("BIO", BIO[id]);
+const Biography = ({ id, onBackClick }) => {
+  const handleOnClick = () => {
+    onBackClick && onBackClick();
+  };
+  // console.log("BIO", BIO[id]);
   return (
     <>
       <div className={style.root}>
         <Container>
+          <div className={style.btmWrap}>
+              <Button color={"secondary"} onClick={handleOnClick}>Go Back</Button>
+          </div>
           {BIO[id].map((item) => {
             switch (item.type) {
               case "h1":
@@ -18,7 +24,7 @@ const Biography = ({ id }) => {
               case "h2":
                 return <Text level={2}>{item.text}</Text>;
               case "paragraph":
-                return <Text>{item.text}</Text>;
+                return <Text level={4}>{item.text}</Text>;
               case "img":
                 return (
                   <div className={style.imgWrapper}>
@@ -26,7 +32,8 @@ const Biography = ({ id }) => {
                   </div>
                 );
               default:
-                return <Text>{item.text}</Text>;
+                return <Text level={5}>{item.text}</Text>;
+                
             }
           })}
         </Container>
@@ -36,6 +43,7 @@ const Biography = ({ id }) => {
 };
 
 Biography.propTypes = {
+  onBackClick: PropsType.func,
   id: PropsType.number,
 };
 
