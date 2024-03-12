@@ -3,13 +3,46 @@ import Container from "../Container";
 import Heading from "../Heading";
 import Text from "../Text";
 import { useState } from "react";
+import Clock from "../../Clock";
+import Button from "../Button/Button";
+
+function Greeting() {
+  return (
+    <>
+      <div>
+        <h2>hello</h2>
+      </div>
+    </>
+  )
+}
+
+function Bye() {
+  return (
+    <>
+      <div>
+        <h2>bye</h2>
+      </div>
+    </>
+  )
+}
+
 
 const Slider = () => {
-  const [state, setState] = useState(1);
+  const [state, setState] = useState(true);
 
   const handleClick = () => {
-    setState(state + 1);
+    setState(!state);
   };
+  // let component;
+
+  // if (state) {
+  //   component = <Bye />;
+  // } else {
+  //   component = <Greeting />;
+  // }
+  // if (!state) {
+  //   return <Greeting />;
+  // }
 
   return (
     <>
@@ -18,10 +51,11 @@ const Slider = () => {
           <Container className={style.sliderContent}>
             <Heading />
             <Text level={2}>
-              {state}
+              {state && <Clock />}
+              {/* {component} */}
             </Text>
             <div className={style.call}>
-              <button className={style.button} onClick={handleClick}>Wow</button>
+                <Button active={state}>Wow</Button>          
             </div>
           </Container>
         </div>
