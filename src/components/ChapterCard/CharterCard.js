@@ -8,6 +8,7 @@ import PropsType from "prop-types";
 import { ReactComponent as Like } from "../../components/ChapterCard/assets/heart.svg";
 import Biography from "../pages/Biography/Biography";
 import Button from "../../components/Button/Button";
+import { Link } from "react-router-dom";
 
 const CharterCard = ({
   id,
@@ -17,15 +18,11 @@ const CharterCard = ({
   description,
   onClickLike,
   isLike,
-  onReadBio,
 }) => {
   // console.log('isLike', isLike);
   const [like, setLike] = useState(false);
   const handleClick = () => {
     onClickLike && onClickLike(id);
-  };
-  const handleReadBio = () => {
-    onReadBio && onReadBio(id);
   };
 
   return (
@@ -53,9 +50,7 @@ const CharterCard = ({
             <Like />
           </div>
           <div className={style.readBio}>
-            <a href="#" onClick={handleReadBio}>
-              Read Bio
-            </a>
+            <Link to={`/characters/${id}`}>Read Bio</Link> 
           </div>
         </div>
       </div>
@@ -74,7 +69,6 @@ CharterCard.propsType = {
   description: PropsType.string,
   isLike: PropsType.bool,
   onClickLike: PropsType.func,
-  onReadBio: PropsType.func,
 };
 
 export default CharterCard;

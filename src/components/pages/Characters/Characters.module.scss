@@ -1,0 +1,12 @@
+.root {
+  display: flex;
+}
+
+.cardWrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 12px;
+  gap: 24px;
+  max-width: 1180px;
+  width: 100%;
+}
