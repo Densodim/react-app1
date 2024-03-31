@@ -13,11 +13,13 @@ const Text = ({
   italic,
   disabled,
   backline,
+  id,
 }) => {
   const el = `h${level}`;
   return React.createElement(
     el,
     {
+      id,
       className: cn(style.root, className, {
         [style.strong]: strong,
         [style.italic]: italic,
@@ -36,6 +38,7 @@ Text.defoultProps = {
 
 Text.propTypes = {
   children: PropType.node,
+  id:PropType.string,
   level: PropType.oneOf([1, 2, 3, 4, 5]).isRequired,
   className: PropType.string,
   strong: PropType.bool,

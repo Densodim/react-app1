@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 
 import style from "./App.module.scss";
 import Header from "./components/Header";
@@ -9,6 +9,7 @@ import CharterCard from "./components/ChapterCard/CharterCard";
 import Biography from "./components/pages/Biography/Biography";
 import Layout from "./components/Layout/Layout";
 import Root from "./router/root";
+import { useLocation } from "react-router-dom";
 
 const CHARACTER = [
   {
@@ -79,9 +80,19 @@ const CHARACTER = [
   },
 ];
 function App() {
-  
   const [chapter, setChapter] = useState(CHARACTER);
   const [chapterID, setChapterID] = useState(null);
+  const location = useLocation();
+  console.log(location.pathname);
+  useEffect(() => {
+    if(location.hash){
+      const el = document.getElementById(location.hash.slice(1));
+      // console.log('el', el);
+      el.scrollIntoView({ behavior: 'smooth' });
+    }else{
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash]);
   // console.log('chapter', chapter);
   const handleLikeCklick = (id) => {
     // console.log('like function', id);
@@ -143,10 +154,9 @@ function App() {
                     onReadBio={handleReadBioClick}
                     isLike={item.isLike}
                   />
-                </div> 
+                </div>
               ))}
             </div>
-
           </section>
         </>
       )}
