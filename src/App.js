@@ -10,6 +10,11 @@ import Biography from "./components/pages/Biography/Biography";
 import Layout from "./components/Layout/Layout";
 import Root from "./router/root";
 import { useLocation } from "react-router-dom";
+import Counter from "./components/useState";
+import CounterReducer from "./components/useReducer";
+
+
+
 
 const CHARACTER = [
   {
@@ -122,6 +127,8 @@ function App() {
     <>
       <Root />
       <Slider />
+      <Counter /> 
+      <CounterReducer />
       {chapterID !== null ? (
         <Biography id={chapterID} onBackClick={() => setChapterID(null)} />
       ) : (
