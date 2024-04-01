@@ -1,11 +1,28 @@
-import { Outlet, Link, useLoaderData, useNavigate} from "react-router-dom";
+import { Outlet, Link, useLoaderData, useNavigate, NavLink} from "react-router-dom";
 import style from "./style.module.scss";
 import PropTypes from 'prop-types';
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import Container from "../Container";
 
 
-// const MENU = ["Menu 1", "Menu 2", "Menu 3", "Menu 4"];
+const MENU = [
+  {
+    title: "Main",
+    path: "/",
+  },
+  {
+    title: "Characters",
+    path: "/characters",
+  },
+  {
+    title: "About Game",
+    path: "/about",
+  },
+  {
+    title: "Contacts",
+    path: "/contacts",
+  },
+];
 
 const Header = () => {
   const navigate = useNavigate();
@@ -23,10 +40,21 @@ const Header = () => {
               <Logo />
             </div>
             <ul className={style.nav}>
-            <li><Link to={`/`}>Main</Link></li>
+              {
+                MENU.map((item, index) => (
+                  <li key={index}>
+                    <NavLink to={item.path} className={({isActive}) => {
+                      return isActive ? style.active : null
+                    }}>{item.title}</NavLink>
+                    {/* <Link to={item.path}>{item.title}</Link> */}
+                    </li>
+                ))
+              }
+
+            {/* <li><Link to={`/`}>Main</Link></li>
             <li><Link to={`/characters`}>Characters</Link></li>
             <li><Link to={`/about`}>About Game</Link></li>
-            <li><Link to={`/contacts`}>Contacts</Link></li>
+            <li><Link to={`/contacts`}>Contacts</Link></li> */}
 
               {/* {MENU.map((item) => (
                 <li>

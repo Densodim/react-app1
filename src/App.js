@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 
 import style from "./App.module.scss";
 import Header from "./components/Header";
@@ -9,6 +9,7 @@ import CharterCard from "./components/ChapterCard/CharterCard";
 import Biography from "./components/pages/Biography/Biography";
 import Layout from "./components/Layout/Layout";
 import Root from "./router/root";
+import { useLocation } from "react-router-dom";
 
 const CHARACTER = [
   {
@@ -79,13 +80,25 @@ const CHARACTER = [
   },
 ];
 function App() {
-  
   const [chapter, setChapter] = useState(CHARACTER);
-  const [chapterID, setChapterID] = useState(null);
+  const [chapterID, setChapterID] = useState(null); 
+  
+  useEffect(() => {
+    if(location.hash){
+      const el = document.getElementById(location.hash.slice(1)); // Get the element with id
+      window.addEventListener('load', () => {    // When the page is loaded
+        el.scrollIntoView({
+          block: 'center',  // Start scrolling from the top
+           behavior: 'smooth' }); // Scroll to the element smoothly
+      }, { once: true }); // Run only once
+      
+    }else{
+      window.scrollTo(0, 0); 
+    }
+  }, [location.pathname, location.hash]); 
   // console.log('chapter', chapter);
-  const handleLikeCklick = (id) => {
+  function handleLikeCklick(id) {
     // console.log('like function', id);
-
     setChapter((prevState) => {
       const copyChapter = chapter.map((item) => {
         if (id === item.id) {
@@ -99,7 +112,7 @@ function App() {
 
       return copyChapter;
     });
-  };
+  }
 
   const handleReadBioClick = (id) => {
     setChapterID(id);
@@ -143,10 +156,9 @@ function App() {
                     onReadBio={handleReadBioClick}
                     isLike={item.isLike}
                   />
-                </div> 
+                </div>
               ))}
             </div>
-
           </section>
         </>
       )}

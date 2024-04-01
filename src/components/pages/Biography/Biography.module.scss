@@ -19,3 +19,17 @@
     align-items: center;
     padding: 32px 0;
 }
+.heading{
+    &:hover {
+        .linkIcon {
+            opacity: 1;
+        }
+        
+    }
+}
+.linkIcon {
+    opacity: 0;
+    transform: opacity .25s ease-in-out;
+    width: .75em;
+    height: .75em;
+}
