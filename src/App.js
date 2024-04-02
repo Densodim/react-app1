@@ -12,6 +12,8 @@ import Root from "./router/root";
 import { useLocation } from "react-router-dom";
 import Counter from "./components/useState";
 import CounterReducer from "./components/useReducer";
+import InitRef, { ShowName } from "./components/useRef";
+
 
 
 
@@ -129,6 +131,8 @@ function App() {
       <Slider />
       <Counter /> 
       <CounterReducer />
+      <InitRef />
+      <ShowName />
       {chapterID !== null ? (
         <Biography id={chapterID} onBackClick={() => setChapterID(null)} />
       ) : (

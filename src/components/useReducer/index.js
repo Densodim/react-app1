@@ -31,7 +31,7 @@ const reducer = (state, action) => { // {count: 0}
 
 const CounterReducer = () => {
   const [state, dispatch] = useReducer(reducer, initState);
-  console.log("state", state); 
+  // console.log("state", state); 
 
   const handleMinusClick = () => {
     dispatch({ 
@@ -53,8 +53,8 @@ const CounterReducer = () => {
   }
   return (
     <>
-      <Text level={3}>useReducer</Text>
       <div className={style.root}>
+      <Text level={3}>useReducer</Text>
         <div>{state.count}</div>
         <button className={style.button} onClick={handlePlusClick}>
           +
