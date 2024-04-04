@@ -5,6 +5,7 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 import Container from "../Container";
 
 
+
 const MENU = [
   {
     title: "Main",
@@ -22,6 +23,10 @@ const MENU = [
     title: "Contacts",
     path: "/contacts",
   },
+  {
+    title: "Login",
+    path: "/login",
+  }
 ];
 
 const Header = () => {

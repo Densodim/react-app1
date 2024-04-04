@@ -21,6 +21,7 @@ import Header from "./components/Header";
 import Contacts from "./components/pages/Contacts/Contacts";
 import About from "./components/pages/About/About";
 import Characters from "./components/pages/Characters/Characters";
+import Login from "./components/LoginForm/Login";
 
 // const router = createBrowserRouter(
 //   createRoutesFromElements(
@@ -50,8 +51,10 @@ const router = createBrowserRouter([
       {path: "about", element: <About />},
       {path: "characters", element: <Characters />},
       {path: "characters/:id", element: <Biography />},
-    ],
+      
+    ],   
   },
+  {path: '/login', element: <Login />},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
