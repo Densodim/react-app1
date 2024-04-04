@@ -1,0 +1,59 @@
+.buttonContainer {
+  margin: 0 60px;
+  text-align: center;
+}
+.buttonContainer button {
+  outline: 0;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  background: 0;
+  width: 240px;
+  border: 2px solid #e3e3e3;
+  padding: 20px 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+.buttonContainer button span {
+  position: relative;
+  z-index: 1;
+  color: #ddd;
+  transition: 0.3s ease;
+}
+.buttonContainer button:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  background: #ed2553;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  margin: -15px 0 0 -15px;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+.buttonContainer button:hover,
+.buttonContainer button:active,
+.buttonContainer button:focus {
+  border-color: #ed2553;
+}
+.buttonContainer button:hover span,
+.buttonContainer button:active span,
+.buttonContainer button:focus span {
+  color: #ed2553;
+}
+.buttonContainer button:active span,
+.buttonContainer button:focus span {
+  color: #ffffff;
+}
+.buttonContainer button:active:before,
+.buttonContainer button:focus:before {
+  opacity: 1;
+  transform: scale(10);
+}
