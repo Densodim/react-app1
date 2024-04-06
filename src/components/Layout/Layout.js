@@ -4,6 +4,7 @@ import Header from "../Header";
 import style from "./Layout.module.scss";
 import { Outlet, Link, useMatch } from "react-router-dom";
 import PropPypes from "prop-types";
+import { RequireAuth } from "../../contex/authContex";
 
 const Layout = () => {
   const math = useMatch("/");
@@ -16,7 +17,7 @@ const Layout = () => {
       ) : (
         <div className={style.conteiner}>
           <Container>
-            <Outlet />
+            <RequireAuth><Outlet /></RequireAuth> 
           </Container>
         </div>
       )}

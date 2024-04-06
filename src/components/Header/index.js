@@ -1,10 +1,15 @@
-import { Outlet, Link, useLoaderData, useNavigate, NavLink} from "react-router-dom";
+import {
+  Outlet,
+  Link,
+  useLoaderData,
+  useNavigate,
+  NavLink,
+} from "react-router-dom";
 import style from "./style.module.scss";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import Container from "../Container";
-
-
+import { useAuth } from "../../contex/authContex";
 
 const MENU = [
   {
@@ -26,15 +31,17 @@ const MENU = [
   {
     title: "Login",
     path: "/login",
-  }
+  },
 ];
 
 const Header = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // get navigate
 
   const handleLogoClick = () => {
-    navigate(`/`);
-  }
+    navigate(`/`); // redirect
+  };
+
+  const auth = useAuth(); // get auth context
 
   return (
     <>
@@ -45,27 +52,22 @@ const Header = () => {
               <Logo />
             </div>
             <ul className={style.nav}>
+              {MENU.map((item, index) => (
+                <li key={index}>
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) => {
+                      return isActive ? style.active : null;
+                    }}
+                  >
+                    {item.title}
+                  </NavLink>
+                  {/* <Link to={item.path}>{item.title}</Link> */}
+                </li>
+              ))}
               {
-                MENU.map((item, index) => (
-                  <li key={index}>
-                    <NavLink to={item.path} className={({isActive}) => {
-                      return isActive ? style.active : null
-                    }}>{item.title}</NavLink>
-                    {/* <Link to={item.path}>{item.title}</Link> */}
-                    </li>
-                ))
+                auth.user ? <li><div onClick={() => auth.logout()}>Logout</div></li> : <li><Link to="/login">Login</Link></li>
               }
-
-            {/* <li><Link to={`/`}>Main</Link></li>
-            <li><Link to={`/characters`}>Characters</Link></li>
-            <li><Link to={`/about`}>About Game</Link></li>
-            <li><Link to={`/contacts`}>Contacts</Link></li> */}
-
-              {/* {MENU.map((item) => (
-                <li>
-                  <a href="#">{item}</a>
-                </li> */}
-              {/* ))} */}
             </ul>
           </div>
         </Container>
