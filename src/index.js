@@ -4,13 +4,11 @@ import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Routes,
-  Link,
-  createRoutesFromElements,
+
 } from "react-router-dom";
 
 import App from "./App";
+import AppTest from "./AppTest";
 import "./index.css";
 import Biography from "./components/pages/Biography/Biography";
 import Layout from "./components/Layout/Layout";
@@ -22,6 +20,8 @@ import Contacts from "./components/pages/Contacts/Contacts";
 import About from "./components/pages/About/About";
 import Characters from "./components/pages/Characters/Characters";
 import Login from "./components/LoginForm/Login";
+import { AuthProvider, RequireAuth } from "./contex/authContex";
+
 
 // const router = createBrowserRouter(
 //   createRoutesFromElements(
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "/", Component: App },
+      { path: "/", element: <RequireAuth><App/></RequireAuth> },
       { path: "bios/:id", element: <Biography />},
       {
         path: "contacts/:contactId",
@@ -58,5 +58,5 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <AuthProvider><RouterProvider router={router} /></AuthProvider>
 );

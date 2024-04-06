@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 
 import style from "./App.module.scss";
 import Header from "./components/Header";
@@ -13,6 +13,7 @@ import { useLocation } from "react-router-dom";
 import Counter from "./components/useState";
 import CounterReducer from "./components/useReducer";
 import InitRef, { ShowName } from "./components/useRef";
+import { AuthContext } from "./contex/authContex";
 
 
 
@@ -89,6 +90,10 @@ const CHARACTER = [
 function App() {
   const [chapter, setChapter] = useState(CHARACTER);
   const [chapterID, setChapterID] = useState(null); 
+
+  const contex = useContext(AuthContext);
+
+  // console.log('contex', contex);
   
   useEffect(() => {
     if(location.hash){
@@ -129,10 +134,10 @@ function App() {
     <>
       <Root />
       <Slider />
-      <Counter /> 
+      {/* <Counter /> 
       <CounterReducer />
       <InitRef />
-      <ShowName />
+      <ShowName /> */}
       {chapterID !== null ? (
         <Biography id={chapterID} onBackClick={() => setChapterID(null)} />
       ) : (

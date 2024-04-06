@@ -1,72 +1,78 @@
 .root {
-    height: 80px;
+  height: 80px;
 }
 
 .headerWrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header {
-    height: 80px;
-    width: 100%;
-    transition: height 0.2s linear, box-shadow 0.2s linear;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    background: rgba(245, 245, 245, 0.97);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    &.small {
-        height: 60px;
-        box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.8);
-    }
+  height: 80px;
+  width: 100%;
+  transition: height 0.2s linear, box-shadow 0.2s linear;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background: rgba(245, 245, 245, 0.97);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.small {
+    height: 60px;
+    box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.8);
+  }
 }
 
 .logo {
-    height: 70px;
-    width: 125px;
-    
+  height: 70px;
+  width: 125px;
 }
 
 .nav {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    font-size: 18px;
-    transition: font-size 0.2s linear;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  transition: font-size 0.2s linear;
 }
 
 .nav li {
-    position: relative;
+  position: relative;
 }
 
 .nav li a {
-    transition: color 0.2s linear;
+  transition: color 0.2s linear;
+}
+.nav li div {
+  transition: color 0.2s linear;
+  cursor: pointer;
 }
 
 .nav li:hover a {
-    color: red;
+  color: red;
+}
+.nav li:hover div {
+  color: red;
 }
 
 .nav li a {
-    padding: 21px;
-    color: initial;
-    text-decoration: initial;
+  padding: 21px;
+  color: initial;
+  text-decoration: initial;
 }
 
 .header.small .logo {
-    width: 89px;
-    height: 50px;
+  width: 89px;
+  height: 50px;
 }
 
-.header.small .nav  {
-    font-size: 16px;
+.header.small .nav {
+  font-size: 16px;
 }
-.nav li a.active{
-    color: red;
+.nav li a.active {
+  color: red;
 }
