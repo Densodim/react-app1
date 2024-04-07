@@ -3,6 +3,9 @@ import style from './Characters.module.scss';
 import Text from '../../Text';
 import CharterCard from "../../ChapterCard/CharterCard";
 
+import {useSelector, useDispatch} from 'react-redux'; //useSelector and useDispatch from react-redux
+import { cardSelector, like } from "../../../store/charterSlice";
+
 const CHARACTER = [
     {
       id: 1011334,
@@ -74,24 +77,29 @@ const CHARACTER = [
 
 const Characters = () => {
     const [chapter, setChapter] = useState(CHARACTER);
-    
+
+    const chapterIdSelector = useSelector(cardSelector); // селектор получения карточек персонажей  
+    const dispatch = useDispatch(); // диспатч получения карточек персонажей
+
     // console.log('chapter', chapter);
     const handleLikeCklick = (id) => {
-      // console.log('like function', id);
+      console.log('like function', id);
+
+      dispatch(like(id)); // диспатч получения карточек персонажей
   
-      setChapter((prevState) => {
-        const copyChapter = chapter.map((item) => {
-          if (id === item.id) {
-            return {
-              ...item,
-              isLike: !item.isLike,
-            };
-          }
-          return item;
-        });
+      // setChapter((prevState) => {
+      //   const copyChapter = chapter.map((item) => {
+      //     if (id === item.id) {
+      //       return {
+      //         ...item,
+      //         isLike: !item.isLike,
+      //       };
+      //     }
+      //     return item;
+      //   });
   
-        return copyChapter;
-      });
+      //   return copyChapter;
+      // });
     };
   
    
@@ -107,7 +115,7 @@ const Characters = () => {
                     humanName={item.humanName}
                     description={item.description}
                     onClickLike={handleLikeCklick}
-                    isLike={item.isLike}
+                    isLike={chapterIdSelector[item.id]}
                   />
                 </div> 
               ))}

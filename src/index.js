@@ -1,11 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
 import AppTest from "./AppTest";
@@ -22,16 +18,18 @@ import Characters from "./components/pages/Characters/Characters";
 import Login from "./components/LoginForm/Login";
 import { AuthProvider, RequireAuth } from "./contex/authContex";
 
+import { store } from "./store";
+import { Provider } from "react-redux";
 
 // const router = createBrowserRouter(
 //   createRoutesFromElements(
-    
+
 //       <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
 //         <Route path="/" element={<App />} />
 //         <Route path="bios/:id" element={<Biography/>}/>
 //         <Route path="contacts/:contactId" element={<Contact />} />
 //       </Route>
-   
+
 //   )
 // );
 
@@ -41,22 +39,32 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "/", element: <RequireAuth><App/></RequireAuth> },
-      { path: "bios/:id", element: <Biography />},
+      {
+        path: "/",
+        element: (
+          <RequireAuth>
+            <App />
+          </RequireAuth>
+        ),
+      },
+      { path: "bios/:id", element: <Biography /> },
       {
         path: "contacts/:contactId",
         element: <Contact />,
       },
-      {path: "contacts", element: <Contacts />},
-      {path: "about", element: <About />},
-      {path: "characters", element: <Characters />},
-      {path: "characters/:id", element: <Biography />},
-      
-    ],   
+      { path: "contacts", element: <Contacts /> },
+      { path: "about", element: <About /> },
+      { path: "characters", element: <Characters /> },
+      { path: "characters/:id", element: <Biography /> },
+    ],
   },
-  {path: '/login', element: <Login />},
+  { path: "/login", element: <Login /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <AuthProvider><RouterProvider router={router} /></AuthProvider>
+  <Provider store={store}> 
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </Provider>
 );
