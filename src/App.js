@@ -15,8 +15,11 @@ import CounterReducer from "./components/useReducer";
 import InitRef, { ShowName } from "./components/useRef";
 import { AuthContext } from "./contex/authContex";
 
+import {useSelector} from 'react-redux';
+import { counterValueSelector } from "./store/counterSlice";
 
-
+import { useDispatch } from 'react-redux';
+import { cardSelector, like } from "./store/charterSlice";
 
 
 const CHARACTER = [
@@ -91,6 +94,14 @@ function App() {
   const [chapter, setChapter] = useState(CHARACTER);
   const [chapterID, setChapterID] = useState(null); 
 
+  const counterValue = useSelector(counterValueSelector);//counterValueSelector from counterSlice reducer
+
+  const chapterIdSelector = useSelector(cardSelector); //cardSelector from charterSlice reducer
+
+  // console.log('chapterIdSelector', chapterIdSelector);
+
+  const dispatch = useDispatch(); // dispatch increment and decrement action from counterSlice reducer
+
   const contex = useContext(AuthContext);
 
   // console.log('contex', contex);
@@ -111,19 +122,22 @@ function App() {
   // console.log('chapter', chapter);
   function handleLikeCklick(id) {
     // console.log('like function', id);
-    setChapter((prevState) => {
-      const copyChapter = chapter.map((item) => {
-        if (id === item.id) {
-          return {
-            ...item,
-            isLike: !item.isLike,
-          };
-        }
-        return item;
-      });
 
-      return copyChapter;
-    });
+    dispatch(like(id)); // Like action from counterSlice reducer 
+
+    // setChapter((prevState) => {
+    //   const copyChapter = chapter.map((item) => {
+    //     if (id === item.id) {
+    //       return {
+    //         ...item,
+    //         isLike: !item.isLike,
+    //       };
+    //     }
+    //     return item;
+    //   });
+
+    //   return copyChapter;
+    // });
   }
 
   const handleReadBioClick = (id) => {
@@ -145,7 +159,7 @@ function App() {
           <section>
             <div className={style.cardTitle}>
               <Text level={1} backline>
-                <span>Заголовок, но только сверху</span>
+                <span>Заголовок, но только сверху </span>
               </Text>
               <Text
                 level={1}
@@ -155,7 +169,7 @@ function App() {
                 italic={true}
                 disabled={true}
               >
-                <span>Заголовок, но только снизу</span>
+                <span>Заголовок, но только снизу value:{counterValue}</span>
               </Text>
             </div>
 
@@ -170,7 +184,7 @@ function App() {
                     description={item.description}
                     onClickLike={handleLikeCklick}
                     onReadBio={handleReadBioClick}
-                    isLike={item.isLike}
+                    isLike={chapterIdSelector[item.id]}
                   />
                 </div>
               ))}

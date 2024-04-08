@@ -1,12 +1,4 @@
-import React, { Component, useState } from "react";
-import style from './Characters.module.scss';
-import Text from '../../Text';
-import CharterCard from "../../ChapterCard/CharterCard";
-
-import {useSelector, useDispatch} from 'react-redux'; //useSelector and useDispatch from react-redux
-import { cardSelector, like } from "../../../store/charterSlice";
-
-const CHARACTER = [
+export const CHARACTER = [
     {
       id: 1011334,
       name: "Spider-Man",
@@ -74,55 +66,3 @@ const CHARACTER = [
       isLike: false,
     },
   ];
-
-const Characters = () => {
-    const [chapter, setChapter] = useState(CHARACTER);
-
-    const chapterIdSelector = useSelector(cardSelector); // селектор получения карточек персонажей  
-    const dispatch = useDispatch(); // диспатч получения карточек персонажей
-
-    // console.log('chapter', chapter);
-    const handleLikeCklick = (id) => {
-      console.log('like function', id);
-
-      dispatch(like(id)); // диспатч получения карточек персонажей
-  
-      // setChapter((prevState) => {
-      //   const copyChapter = chapter.map((item) => {
-      //     if (id === item.id) {
-      //       return {
-      //         ...item,
-      //         isLike: !item.isLike,
-      //       };
-      //     }
-      //     return item;
-      //   });
-  
-      //   return copyChapter;
-      // });
-    };
-  
-   
-    return (
-        <>
-            <div className={style.cardWrap}>
-              {chapter.map((item) => (
-                <div key={item.id}>
-                  <CharterCard
-                    id={item.id}
-                    name={item.name}
-                    src={item.thumbnail.path}
-                    humanName={item.humanName}
-                    description={item.description}
-                    onClickLike={handleLikeCklick}
-                    isLike={chapterIdSelector[item.id]}
-                  />
-                </div> 
-              ))}
-            </div>
-                
-        </>
-    );
-}
-
-export default Characters;
