@@ -1,8 +1,9 @@
+import React, { useState } from "react";
+
 import style from "./style.module.scss";
 import Container from "../Container";
 import Heading from "../Heading";
 import Text from "../Text";
-import { useState } from "react";
 import Clock from "../../Clock";
 import Button from "../Button/Button";
 
@@ -97,4 +98,4 @@ const Slider = () => {
   );
 };
 
-export default Slider;
+export default  React.memo(Slider) // Slider;
