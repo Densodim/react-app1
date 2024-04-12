@@ -9,6 +9,7 @@ export const chapterSlice = createSlice({
         like: (state, action) => {
             // console.log('like action', action.payload);
             // console.log('state', state);
+            
             state.card[action.payload] = !state.card[action.payload];
 
         },

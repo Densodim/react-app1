@@ -10,3 +10,16 @@
   max-width: 1180px;
   width: 100%;
 }
+.filter {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+  border: 2px solid #fff;
+  padding: 12px;
+  background-color: black;
+  color: #fff;
+  font-size: 18px;
+}
+.filterLike {
+  cursor: pointer;
+}

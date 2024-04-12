@@ -20,6 +20,7 @@ import { AuthProvider, RequireAuth } from "./contex/authContex";
 
 import { store } from "./store";
 import { Provider } from "react-redux";
+import CharactersLike from "./components/pages/Characters/CharactersLike/CharactersLike";
 
 // const router = createBrowserRouter(
 //   createRoutesFromElements(
@@ -54,15 +55,19 @@ const router = createBrowserRouter([
       },
       { path: "contacts", element: <Contacts /> },
       { path: "about", element: <About /> },
-      { path: "characters", element: <Characters /> },
+      {
+        path: "characters/",
+        element: <Characters />,
+      },
       { path: "characters/:id", element: <Biography /> },
+      { path: "like", element: <CharactersLike /> }
     ],
   },
   { path: "/login", element: <Login /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Provider store={store}> 
+  <Provider store={store}>
     <AuthProvider>
       <RouterProvider router={router} />
     </AuthProvider>
