@@ -21,6 +21,7 @@ import { AuthProvider, RequireAuth } from "./contex/authContex";
 import { store } from "./store";
 import { Provider } from "react-redux";
 import CharactersLike from "./components/pages/Characters/CharactersLike/CharactersLike";
+import Main from "./components/pages/Main/Main";
 
 // const router = createBrowserRouter(
 //   createRoutesFromElements(
@@ -54,6 +55,7 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       { path: "contacts", element: <Contacts /> },
+      { path: "main", element: <Main /> },
       { path: "about", element: <About /> },
       {
         path: "characters/",

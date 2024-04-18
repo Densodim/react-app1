@@ -14,6 +14,7 @@ export const cardSlice = createSlice({
   name: "card",
   initialState: {
     card: { CHARACTER },
+    
     newcard: [],
     ident: 0,
     keyFilter: "all",
@@ -37,10 +38,12 @@ export const cardSlice = createSlice({
     //   state.ident = state.ident + 1;
       state.newcard = action.payload;
     },
+    
+
   },
 });
 
-export const { add } = cardSlice.actions;
+export const { add } = cardSlice.actions; //добавляем экшены
 
 export const bioSelector = (state) => state.card.card;
 

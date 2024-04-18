@@ -13,8 +13,12 @@ import { useAuth } from "../../contex/authContex";
 
 const MENU = [
   {
-    title: "Main",
+    title: "Home",
     path: "/",
+  },
+  {
+    title: "Main",
+    path: "/main",
   },
   {
     title: "Characters",
